@@ -1,0 +1,8 @@
+/* manejar los width -- width: min(100%, 950px)*/
+@mixin flex($justify, $align, $direction, $pack, $gap: 0rem){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-flow: $direction $pack;
+    gap: $gap;
+}

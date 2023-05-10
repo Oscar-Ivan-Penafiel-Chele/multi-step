@@ -1,0 +1,10 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+main > aside > p{
+    color: var(--purplish-blue);
+}
