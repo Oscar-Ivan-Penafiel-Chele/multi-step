@@ -1,0 +1,48 @@
+@use '../../../../../scss/abstracts' as a;
+
+.item__menu{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem 0rem;
+    font-family: ubuntu-regular;
+
+    &__id > span, &__content__title{
+        color: var(--alabaster);
+    }
+
+    &__id{
+        width: min-content;
+        padding: .5rem .7rem;
+        background-color: transparent;
+        border-radius: 100%;
+        border: 1px solid var(--alabaster);
+        font-size: .8rem;
+        font-family: ubuntu-bold;
+        @include a.flex(center, center);
+    }
+
+    &__content{
+        &__name{
+            color: var(--cool-gray);
+            font-size: .8rem;
+        }
+    
+        &__title{
+            letter-spacing: 0.1rem;
+            font-size: .8rem;
+            padding-top: .2rem;
+        }
+    }
+   
+}
+
+.active{
+    background-color: var(--light-blue);
+    border-color: var(--light-blue);
+    
+    span{
+        color: var(--marine-blue);
+    }
+}
