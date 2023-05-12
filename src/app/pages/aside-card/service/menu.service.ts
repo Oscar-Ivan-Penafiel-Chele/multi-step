@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ItemMenu } from 'src/app/models';
+import { ElementsList, ItemMenu } from 'src/app/models';
 import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MenuService {
-  protected path: string = "";
 
-  constructor(protected location: Location) {
-    this.path = location.path().substring(1);
+export class MenuService {
+  protected readonly EMPTY_STRING = '';
+  protected readonly CLASS_ACTIVE = 'active';
+  location: Location;
+
+  constructor(location: Location) {
+    this.location = location;
    }
 
   public setMenu(): ItemMenu[]{
@@ -46,35 +49,59 @@ export class MenuService {
     return menu;
   }
 
-  public activeMenuItem(){
+  private getElements(): ElementsList{
     const menu = this.getMenu();
     const items = this.setMenu();
+    const path = this.location.path().substring(1);
 
-    let findItem = items.find( i => i.label == this.path) ?? false;
+    return { menu, items, path };
+  }
 
-    this.inactiveAllItems(menu);
+  public activeMenuItem(): void{
+    this.inactiveAllItems();
+    this.activeItemError();
+    this.activeItemForRoute();
+  }
 
-    // Activa el primer step si la ruta esta vacia O si la ruta ingresada no existe
-    if(this.path == '' || !findItem) {
-      menu[0].children[0].classList.add('active'); 
-      return;
-    }
-
+  private inactiveAllItems(): void{
+    const {menu} = this.getElements();
+    
     menu.forEach((item: Element) => {
       let element: Element = item;
-
-      // Si el step no pertenece a la ruta retorna
-      if(element.ariaLabel != this.path) return;
-
-      // Si el step pertenece a la ruta, se activa
-      element.children[0].classList.add('active');
+      element.children[0].classList.remove(this.CLASS_ACTIVE);
     });
   }
 
-  private inactiveAllItems(menu: NodeListOf<Element>){
+  private activeItemError(): void{
+    const { menu, items, path } = this.getElements();
+
+    let findItem = items.find( i => i.label == path) ?? false;
+
+    if(path == this.EMPTY_STRING || !findItem){
+      this.activeFirstItem(menu)
+      return;
+    };
+  }
+
+  private activeFirstItem(menu: NodeListOf<Element>): void{
+    menu[0].children[0].classList.add(this.CLASS_ACTIVE); 
+  }
+
+  private activeItemForRoute(): void{
+    const {menu, path} = this.getElements();
+
     menu.forEach((item: Element) => {
       let element: Element = item;
-      element.children[0].classList.remove('active');
+
+      if(element.ariaLabel != path) return;
+      element.children[0].classList.add(this.CLASS_ACTIVE);
     });
+  }
+
+  public activeItem(index: number): void{
+    const {menu} = this.getElements();
+
+    this.inactiveAllItems();
+    menu[index].children[0].classList.add(this.CLASS_ACTIVE);
   }
 }
