@@ -1,4 +1,11 @@
 <section>
-    <button (click)="back()">back</button>
-    <button (click)="next()">next</button>
+    <button class="button__back" *ngIf="getIndexRoute() != 0" (click)="back()">Go Back</button>
+
+    <ng-template [ngIf]="getIndexRoute() != MENU_LENGTH" [ngIfElse]="buttonComplete">
+        <button class="button__next" (click)="next()">Next Step</button>
+    </ng-template>
+
+    <ng-template #buttonComplete>
+        <button class="button__complete" (click)="complete()">Confirm</button>
+    </ng-template>
 </section>

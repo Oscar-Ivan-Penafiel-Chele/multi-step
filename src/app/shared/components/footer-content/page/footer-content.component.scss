@@ -1,12 +1,55 @@
 section{
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: red;
-    
-    p{
-        width: 100%;
-        color: orange;
+    position: relative;
+
+    .button{
+        &__back{
+            font-family: ubuntu-bold;
+            color: var(--cool-gray);
+            background-color: transparent;
+            border: none;
+            font-size: .8rem;
+            position: absolute;
+            left: 0;
+            bottom: 8px;
+        }
+
+        &__next,  &__complete{
+            padding: .7rem 0rem;
+            width: 105px;
+            border-radius: 5px;
+            border: none;
+            color: var(--alabaster);
+            font-family: ubuntu-medium;
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+        }
+
+        &__next{
+            background-color: var(--marine-blue);
+        }
+
+        &__complete{
+            background-color: var(--purplish-blue);
+        }
+
+        &__back:hover, &__next:hover, &__complete:hover{
+            cursor: pointer;
+        }
+
+        &__next:hover{
+            background-color: hsl(213, 96%, 30%);
+        }
+
+        &__complete:hover{
+            opacity: .7;
+        }
+
+        &__back:hover{
+            color: var(--marine-blue);
+        }
     }
 }

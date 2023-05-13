@@ -1,4 +1,19 @@
 section{
     width: 100%;
     height: fit-content;
+    font-family: ubuntu-medium;
+    padding-top: 2rem;
+
+    h1{
+        color: var(--marine-blue);
+        font-size: 1.5rem;
+    }
+
+    p{
+        color: var(--cool-gray);
+        font-family: ubuntu-regular;
+        font-size: .9rem;
+        padding-top: .5rem;
+        width: fit-content;
+    }
 }
