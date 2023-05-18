@@ -1,0 +1,14 @@
+<article>
+    <div class="input__field">
+        <label for="{{name}}">{{label}}</label>
+        <input  
+            [formControl]="control"
+            [type]="type" 
+            [name]="name" 
+            [placeholder]="placeholder" 
+            [(ngModel)]="value"
+            [required]="required"
+        />
+        <span *ngIf="false">This Field is required</span>
+    </div>
+</article>

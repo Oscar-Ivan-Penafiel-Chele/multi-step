@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./plan.component.scss']
 })
 export class PlanComponent {
+  switch: boolean = false;
 
+  clik(){
+    console.log(this.switch)
+  }
 }

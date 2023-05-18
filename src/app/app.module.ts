@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AsideCardComponent } from './pages/aside-card/aside-card.component';
 import { ItemMenuCardComponent } from './pages/aside-card/components/item-menu-card/item-menu-card.component';
 import { FooterContentComponent } from './shared/components/footer-content/page/footer-content.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { FooterContentComponent } from './shared/components/footer-content/page/
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FooterContentComponent
+    FooterContentComponent,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

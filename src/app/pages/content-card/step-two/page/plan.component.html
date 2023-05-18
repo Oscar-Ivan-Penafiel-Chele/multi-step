@@ -1,1 +1,88 @@
-<p>plan works!</p>
+<section class="plan">
+    <main>
+        <h1>Select your plan</h1>
+        <p>You have the option of monthly or yearly billing.</p>
+    
+        <article class="plan__section">
+            <div class="plan__section__cards">
+                <div class="plan__section__cards__item active__item">
+                    <header>
+                        <img src="../../../../../assets/images/icon-arcade.svg" alt="" srcset="">
+                    </header>
+                    <section>
+                        <h3>Arcade</h3>
+        
+                        <ng-template [ngIf]="!switch" [ngIfElse]="yearlyArcade">
+                            <label class="detail__item">
+                                <p>$9/mo</p>
+                            </label>
+                        </ng-template>
+        
+                        <ng-template #yearlyArcade>
+                            <label class="detail__item">
+                                <p>$90/yr</p>
+                                <span>2 months free</span>
+                            </label>
+                        </ng-template>
+        
+                    </section>
+                </div>
+                <div class="plan__section__cards__item">
+                    <header>
+                        <img src="../../../../../assets/images/icon-advanced.svg" alt="" srcset="">
+                    </header>
+                    <section>
+                        <h3>Advance</h3>
+        
+                        <ng-template [ngIf]="!switch" [ngIfElse]="yearlyAdvance">
+                            <label class="detail__item">
+                                <p>$12/mo</p>
+                            </label>
+                        </ng-template>
+        
+                        <ng-template #yearlyAdvance>
+                            <label class="detail__item">
+                                <p>$120/yr</p>
+                                <span>2 months free</span>
+                            </label>
+                        </ng-template>
+        
+                    </section>
+                </div>
+                <div class="plan__section__cards__item">
+                    <header>
+                        <img src="../../../../../assets/images/icon-pro.svg" alt="" srcset="">
+                    </header>
+                    <section>
+                        <h3>Pro</h3>
+        
+                        <ng-template [ngIf]="!switch" [ngIfElse]="yearlyPro">
+                            <label class="detail__item">
+                                <p>$15/mo</p>
+                            </label>
+                        </ng-template>
+        
+                        <ng-template #yearlyPro>
+                            <label class="detail__item">
+                                <p>$150/yr</p>
+                                <span>2 months free</span>
+                            </label>
+                        </ng-template>
+        
+                    </section>
+                </div>
+            </div>
+    
+            <div class="plan__section__switch">
+                <span [ngClass]="!switch ? 'active' : 'inactive'" >Monthly</span>
+                <label class="switch" (click)="clik()">
+                    <input type="checkbox" [(ngModel)]="switch">
+                    <span class="slider round"></span>
+                </label>
+                <span [ngClass]="switch ? 'active' : 'inactive'" >Yearly</span>
+            </div>
+        </article>
+    </main>
+
+    <footer-content></footer-content>
+</section>

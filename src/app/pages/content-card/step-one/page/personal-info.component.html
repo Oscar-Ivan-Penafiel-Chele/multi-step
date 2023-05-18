@@ -1,10 +1,23 @@
 <section>
-    <h1>Personal info</h1>
-    <p>Please provide your name, email address, and phone number.</p>
-
-    <article>
-        <input-field></input-field>
-        <input-field></input-field>
-        <input-field></input-field>
-    </article>
+    <main>
+        <h1>Personal info</h1>
+        <p>Please provide your name, email address, and phone number.</p>
+    
+        <article>
+            <form [formGroup]="formData">
+                <input-field
+                    ngDefaultControl 
+                    *ngFor="let input of inputs_field"
+                    [control]="input.formControl"
+                    [label]="input.label"
+                    [type]="input.type"
+                    [name]="input.name"
+                    [placeholder]="input.placeholder"
+                    [required]="input.required"
+                ></input-field>
+            </form>
+            
+        </article>
+    </main>
+    <footer-content></footer-content>
 </section>

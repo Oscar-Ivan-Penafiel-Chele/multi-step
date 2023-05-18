@@ -1,10 +1,7 @@
 @use '../../../../../scss/abstracts' as a;
 
 .item__menu{
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-start;
-    align-items: flex-start;
+    @include a.flex(flex-start, flex-start, row, nowrap, 1rem);
     padding: 1rem 0rem;
     font-family: ubuntu-regular;
 

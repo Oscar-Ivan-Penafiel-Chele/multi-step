@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SummaryRoutingModule } from './summary-routing.module';
 import { SummaryComponent } from './page/summary.component';
 import { FinalizationComponent } from './subviews/finalization/page/finalization.component';
+import { FooterContentComponent } from 'src/app/shared/components/footer-content/page/footer-content.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { FinalizationComponent } from './subviews/finalization/page/finalization
   ],
   imports: [
     CommonModule,
-    SummaryRoutingModule
+    SummaryRoutingModule,
+    FooterContentComponent
   ]
 })
 export class SummaryModule { }
