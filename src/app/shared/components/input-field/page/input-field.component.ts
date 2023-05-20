@@ -1,6 +1,6 @@
 import { Component, Input , OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ValidatorsService } from 'src/app/shared/services/validators.service';
+import { ValidatorsService } from 'src/app/shared/services/validations/validators.service';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({

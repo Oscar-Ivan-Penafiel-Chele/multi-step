@@ -3,7 +3,7 @@
 .input__field{
         @include a.flex(flex-start, flex-start, column, nowrap, .5rem);
         width: 100%;
-        padding: .6rem 0.1rem;
+        padding: .6rem 0rem;
         position: relative;
 
         label{

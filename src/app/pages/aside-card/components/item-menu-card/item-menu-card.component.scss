@@ -43,3 +43,13 @@
         color: var(--marine-blue);
     }
 }
+
+@include a.breakpoint('md'){
+    .item__menu{
+        flex-flow: row nowrap;
+    }
+
+    .item__menu__content{
+        display: none;
+    }
+}

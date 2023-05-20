@@ -22,3 +22,33 @@ main{
     }
 }
 
+@include a.breakpoint('md'){
+    main{
+        width: min(100%, 550px);
+        height: min(100%, 100vh);
+        flex-flow: column nowrap;
+        margin-inline: auto;
+        padding: 0;
+        background-color: #EEF5FF;
+
+        aside{
+            width: 100%;
+            height: fit-content;
+        }
+
+        section{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 0rem;
+            top: -85px;
+            margin-bottom: -85px;
+        }
+    }
+}
+
+@include a.breakpoint('sm'){
+    main{
+        width: min(100%, 430px);
+    }
+}
