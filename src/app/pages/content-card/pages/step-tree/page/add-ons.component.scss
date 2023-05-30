@@ -1,0 +1,26 @@
+@use '../../../../../../scss/abstracts' as a;
+
+section{
+    @include a.layoutSection();
+
+    main{
+        background-color: white;
+        width: 100%;   
+    }
+}
+
+@include a.breakpoint('md'){
+    section{
+        padding-top: 0;
+
+        main{
+            @include a.card-content();
+
+            p{
+                margin-top: .3rem;
+                line-height: 1.5rem;
+            }
+    
+        }
+    }
+}

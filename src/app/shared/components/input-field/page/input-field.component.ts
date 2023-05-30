@@ -1,7 +1,7 @@
 import { Component, Input , OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ValidatorsService } from 'src/app/shared/services/validations/validators.service';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'input-field',
@@ -17,16 +17,22 @@ export class InputFieldComponent implements OnInit{
   @Input() name:string = '';
   @Input() placeholder:string = '';
   @Input() required: boolean = true;
+  @Input() submitted: boolean = false;
 
-  value: string = '';
   constructor(private _validatorService: ValidatorsService){}
 
   ngOnInit(): void {
-    
   }
 
-  displayErrors(){
-    const {dirty, touched, errors} = this.control;
-    return dirty && touched && errors;
+  isInvalid(): boolean{
+    const status: string = this.control.status;
+
+    return status === 'INVALID' ? true : false;
   }
+
+  displayErrors(): boolean{
+    return this.submitted && this.isInvalid();
+  }
+
+
 }

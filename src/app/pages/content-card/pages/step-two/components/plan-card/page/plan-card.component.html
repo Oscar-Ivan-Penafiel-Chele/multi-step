@@ -1,0 +1,23 @@
+<article class="plan__section__cards">
+    <div class="plan__section__cards__item" *ngFor="let plan of plans" (click)="selectPlan(plan)">
+        <header>
+            <img [src]="plan.image" alt="Image" srcset="">
+        </header>
+        <section>
+            <h3>{{plan.title}}</h3>
+    
+            <ng-template [ngIf]="!statusPlan" [ngIfElse]="yearlyPro">
+                <label class="detail__item">
+                    <p>{{plan.price | currency: 'USD' : 'symbol' : '1.0-0'}}/mo</p>
+                </label>
+            </ng-template>
+    
+            <ng-template #yearlyPro>
+                <label class="detail__item">
+                    <p>{{plan.price | currency: 'USD' : 'symbol' : '1.0-0'}}/yr</p>
+                    <span>{{plan.detail}}</span>
+                </label>
+            </ng-template>
+        </section>
+    </div>
+</article>

@@ -6,9 +6,9 @@
             [type]="type" 
             [name]="name" 
             [placeholder]="placeholder" 
-            [(ngModel)]="value"
             [required]="required"
+            [ngClass]="{'input__field__error': displayErrors()}"
         />
-        <span *ngIf="false">This Field is required</span>
+        <span *ngIf="displayErrors()">This Field is required</span>
     </div>
 </article>

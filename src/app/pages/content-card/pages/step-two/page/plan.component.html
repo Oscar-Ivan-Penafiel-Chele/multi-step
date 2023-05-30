@@ -1,0 +1,24 @@
+<section class="plan">
+    <main>
+        <h1>Select your plan</h1>
+        <p>You have the option of monthly or yearly billing.</p>
+    
+        <article class="plan__section">
+            <plans
+                [statusPlan]="statusPlan"
+                (selectedPlan)="setPlanSelected($event)"
+            ></plans>
+    
+            <switch-plan
+                (setPlan)="changeStatusPlan($event)"
+            ></switch-plan>
+        </article>
+    </main>
+
+    <footer>
+        <footer-content
+            (validateData)="validateData()"
+        ></footer-content>
+    </footer>
+
+</section>

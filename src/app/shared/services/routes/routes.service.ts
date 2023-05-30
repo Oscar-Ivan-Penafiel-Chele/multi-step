@@ -17,7 +17,6 @@ export class RoutesService {
     private _menuService: MenuService, 
     private router: Router, 
     location: Location,
-    private _validatorService: ValidatorsService,
   ) { 
     this.location = location;
     this.setRoutes();

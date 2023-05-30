@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { RoutesService } from 'src/app/shared/services/routes/routes.service';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { RoutesService } from 'src/app/shared/services/routes/routes.service';
 export class FooterService {
   protected readonly ACTION_NEXT = 'next';
   protected readonly ACTION_BACK = 'back';
+  public information$ = new BehaviorSubject({});  
 
   constructor(private _routesService: RoutesService){}
 

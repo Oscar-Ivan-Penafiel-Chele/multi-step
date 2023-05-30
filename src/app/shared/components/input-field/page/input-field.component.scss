@@ -45,9 +45,10 @@
     }
 
 .input__field__error{
-    border: 1px solid var(--strawberry-red) !important;
+    outline: 1px solid var(--strawberry-red) !important;
 
-    &:focus{
+    &:focus, &:hover{
         outline: 1px solid var(--strawberry-red) !important;
     }
+
 }

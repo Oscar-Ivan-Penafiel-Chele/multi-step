@@ -1,5 +1,3 @@
-import { FormControl } from "@angular/forms";
-
 export interface InputField{
     label: string,
     type: string,

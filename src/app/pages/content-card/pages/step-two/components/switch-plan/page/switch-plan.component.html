@@ -1,0 +1,8 @@
+<div class="plan__section__switch">
+    <span [ngClass]="!statusPlan ? 'active' : 'inactive'" >Monthly</span>
+    <label class="switch">
+        <input type="checkbox" (input)="changePlan($event)">
+        <span class="slider round"></span>
+    </label>
+    <span [ngClass]="statusPlan ? 'active' : 'inactive'" >Yearly</span>
+</div>
