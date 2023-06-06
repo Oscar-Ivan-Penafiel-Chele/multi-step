@@ -9,12 +9,9 @@
             </div>
         </div>
 
-        <ng-template [ngIf]="true" [ngIfElse]="addOnYear">
-            <span class="cards__addOn__item__right">{{addOn.price | currency: 'USD' : 'symbol' : '1.0-0'}}/mo</span>
-        </ng-template>
-
-        <ng-template #addOnYear>
-            <span class="cards__addOn__item__right">{{addOn.price * 10| currency: 'USD' : 'symbol' : '1.0-0'}}/yr</span>
-        </ng-template>
+        <span class="cards__addOn__item__right">
+            {{addOn.price | currency: 'USD' : 'symbol' : '1.0-0'}}
+            {{statusPlan ? '/yr' : '/mo'}}
+        </span>
     </label>
 </div>

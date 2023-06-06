@@ -1,9 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RoutesService } from 'src/app/shared/services/routes/routes.service';
 import { FooterService } from '../service/footer.service';
-import { ValidatorsService } from 'src/app/shared/services/validations/validators.service';
-import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'footer-content',
@@ -14,41 +12,33 @@ import { switchMap } from 'rxjs';
 })
 export class FooterContentComponent {
   @Input() nameComponent!: Component;
- isValid: boolean = false;
   @Output() validateData = new EventEmitter();
-
+  
+  public isValid: boolean = false;
   protected readonly ACTION_NEXT = 'next';
   protected readonly ACTION_BACK = 'back';
   protected MENU_LENGTH = 0;
 
-  constructor(
-    private _routesService: RoutesService, 
-    private _footerService: FooterService,
-    private _validatorService: ValidatorsService
-  ){
-    this.MENU_LENGTH = _routesService.getMenuLength();
+  private routesService = inject(RoutesService);
+  private footerService = inject(FooterService);
+
+  constructor(){
+    this.MENU_LENGTH = this.routesService.getMenuLength();
+  }
+
+  protected getIndexRoute(): number{
+    return this.routesService.getIndexRoute();
   }
 
   protected back(): void{
-    this._footerService.back();
+    this.footerService.back();
   }
 
   protected next(): void{
     this.validateData.emit();
-    
-    this._validatorService.validator$.subscribe((response: boolean) =>{
-      this.isValid = response;
-    })
-
-    if(!this.isValid) return;
-    this._footerService.next();
-  }
-
-  protected getIndexRoute(): number{
-    return this._routesService.getIndexRoute();
   }
 
   protected complete(): void{
-
+    this.validateData.emit();
   }
 }

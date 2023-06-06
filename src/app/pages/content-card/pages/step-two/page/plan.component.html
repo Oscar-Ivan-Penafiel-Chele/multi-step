@@ -5,13 +5,10 @@
     
         <article class="plan__section">
             <plans
-                [statusPlan]="statusPlan"
                 (selectedPlan)="setPlanSelected($event)"
             ></plans>
     
-            <switch-plan
-                (setPlan)="changeStatusPlan($event)"
-            ></switch-plan>
+            <switch-plan></switch-plan>
         </article>
     </main>
 

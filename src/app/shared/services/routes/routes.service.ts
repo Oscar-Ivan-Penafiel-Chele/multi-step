@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from 'src/app/pages/aside-card/service/menu.service';
-import { ValidatorsService } from 'src/app/shared/services/validations/validators.service';
 import { Location } from '@angular/common';
 
 @Injectable({

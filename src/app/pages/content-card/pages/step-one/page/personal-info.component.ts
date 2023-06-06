@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { InputField, PersonalInformation } from 'src/app/models';
 import { PersonalInfoService } from '../service/personal-info.service';
-import { ValidatorsService } from 'src/app/shared/services/validations/validators.service';
 import { ContentService } from '../../../service/content.service';
+import { FooterService } from 'src/app/shared/components';
 
 @Component({
   selector: 'personal-info',
@@ -17,30 +17,28 @@ export class PersonalInfoComponent implements OnInit{
   private isValid: boolean = false;
   private NAME_OF_COMPONENT = "personal_information";
 
-  constructor(
-    private _personalInfoService: PersonalInfoService, 
-    private _validatorService: ValidatorsService,
-    private _contentService: ContentService
-  ){}
+  private personalInfoService = inject(PersonalInfoService);
+  private footerService = inject(FooterService);
+  private contentService = inject(ContentService);
+
+  constructor(){}
 
   ngOnInit(): void {
     this.createFormData();
-   
   }
 
   createFormData(): void{
-    this.formData = this._personalInfoService.setFormData();
-    this.inputs_field = this._personalInfoService.setInputsFields();
+    this.formData = this.personalInfoService.setFormData();
+    this.inputs_field = this.personalInfoService.setInputsFields();
   }
 
   validate(){
     this.submitted = true;
-    
     this.isValid = this.formData.status == 'INVALID' ? false : true;
-    this._validatorService.validator$.next(this.isValid);
+    
+    if(!this.isValid) return;
 
-    if(this.isValid){
-      this._contentService.updateBehavior<PersonalInformation>(this.NAME_OF_COMPONENT, this.formData.value);
-    }
+    this.contentService.updateSignal(this.NAME_OF_COMPONENT, this.formData.getRawValue());
+    this.footerService.next();
   }
 }

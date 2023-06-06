@@ -3,10 +3,13 @@
         <h1>Pick add-ons</h1>
         <p>Add-ons help enhance your gaming experience.</p>
 
+        <span *ngIf="submitted && (getLengthAddOn() == 0)" class="addOn__error">¡Please select at least one option!</span>
         <article>
             <addOns></addOns>
         </article>
     </main>
     
-    <footer-content></footer-content>
+    <footer-content
+        (validateData)="validate()"
+    ></footer-content>
 </section>

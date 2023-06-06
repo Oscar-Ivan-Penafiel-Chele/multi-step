@@ -1,6 +1,5 @@
 import { Component, Input , OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ValidatorsService } from 'src/app/shared/services/validations/validators.service';
 import { FormControl, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 
 @Component({
@@ -19,14 +18,13 @@ export class InputFieldComponent implements OnInit{
   @Input() required: boolean = true;
   @Input() submitted: boolean = false;
 
-  constructor(private _validatorService: ValidatorsService){}
+  constructor(){}
 
   ngOnInit(): void {
   }
 
   isInvalid(): boolean{
     const status: string = this.control.status;
-
     return status === 'INVALID' ? true : false;
   }
 

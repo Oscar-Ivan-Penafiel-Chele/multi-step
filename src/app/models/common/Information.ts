@@ -5,5 +5,6 @@ import { Plan } from "./Plan";
 export interface Information{
     personal_information?: PersonalInformation,
     plan?: Plan,
-    addOns?: AddOn[]
+    addOns?: AddOn[],
+    [key: string]: PersonalInformation | Plan | AddOn[] | undefined;
 }

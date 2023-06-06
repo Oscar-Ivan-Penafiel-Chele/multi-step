@@ -6,6 +6,15 @@ section{
     main{
         background-color: white;
         width: 100%;   
+        position: relative;
+
+        .addOn__error{
+            color: var(--strawberry-red);
+            font-family: ubuntu-regular;
+            position: absolute;
+            top: 4.2rem;
+            font-size: .8rem;
+        }
     }
 }
 
@@ -21,6 +30,19 @@ section{
                 line-height: 1.5rem;
             }
     
+            .addOn__error{
+                top: 7rem;
+            }
+        }
+    }
+}
+
+@include a.breakpoint('sm'){
+    section{
+        main{
+            .addOn__error{
+                top: 8.5rem;
+            }
         }
     }
 }

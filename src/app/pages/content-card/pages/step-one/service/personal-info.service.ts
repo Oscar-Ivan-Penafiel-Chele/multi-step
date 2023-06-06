@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Injectable, inject } from '@angular/core';
+import { UntypedFormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { InputField } from 'src/app/models';
+import { ContentService } from '../../../service/content.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonalInfoService {
-  formData!: FormGroup;
+  protected formData!: FormGroup;
+  private contentService = inject(ContentService);
   
-  constructor() { 
+  constructor(private formBuilder: UntypedFormBuilder) { 
     this.setFormData();
   }
 
@@ -41,16 +43,30 @@ export class PersonalInfoService {
     ];
   }
 
-  public setFormData(): FormGroup{
-    this.formData = new FormGroup({
+  private createFormData(): void{
+    this.formData = this.formBuilder.nonNullable.group({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(2), Validators.email]),
       phone: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    });
+    })
+  }
+
+  public setFormData(): FormGroup{
+    this.createFormData();
+    this.handleValues();
 
     return this.formData;
   }
 
+  private handleValues(){
+    const informationStep = this.contentService.informationStep();
 
-  
+    if (!informationStep) return;
+
+    const personal_information = informationStep.personal_information;
+    
+    this.formData.get('name')?.setValue(personal_information?.name);
+    this.formData.get('email')?.setValue(personal_information?.email);
+    this.formData.get('phone')?.setValue(personal_information?.phone);
+  }
 }

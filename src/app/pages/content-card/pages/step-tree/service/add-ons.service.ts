@@ -1,13 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AddOn, AddOnElements } from 'src/app/models/common/AddOn';
+import { ContentService } from '../../../service/content.service';
+import { PlanService } from '../../step-two/service/plan.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddOnsService {
-  protected addOnsSelected: AddOn[] = [];
-  contador: number = 0;
-  constructor() { }
+  public addOnsSelected: AddOn[] = [];
+  private contentService = inject(ContentService);
+  private planService = inject(PlanService);
+  protected informationStep = this.contentService.informationStep();
+
+  constructor() {}
 
   public setAddOns(): AddOn[]{
     return [
@@ -30,6 +35,36 @@ export class AddOnsService {
         price: 2
       }
     ];
+  }
+
+  public getAddons(): AddOn[]{
+    const statusPlan = this.getStatus();
+
+    if(!statusPlan){
+      return this.setAddOns();
+    }else{
+      return this.getAddOnYearly();
+    }
+  }
+
+  private getAddOnYearly(): AddOn[]{
+    const multiplier = 10;
+    const addOns = this.setAddOns();
+
+    addOns.forEach((addOn: AddOn) =>{
+      addOn.price *= multiplier;
+    })
+
+    return addOns;
+  }
+
+  public getStatus(): boolean{
+    if(!this.informationStep.plan) return false;
+
+    const subscription = this.informationStep.plan.subscription;
+    const statusPlan = this.planService.getStatusValue(subscription!);
+
+    return statusPlan;
   }
 
   protected getElementsAddOns(): NodeListOf<Element>{

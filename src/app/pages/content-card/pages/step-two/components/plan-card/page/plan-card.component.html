@@ -1,5 +1,5 @@
 <article class="plan__section__cards">
-    <div class="plan__section__cards__item" *ngFor="let plan of plans" (click)="selectPlan(plan)">
+    <div class="plan__section__cards__item" [id]="plan.title" *ngFor="let plan of plans" (click)="selectPlan(plan)">
         <header>
             <img [src]="plan.image" alt="Image" srcset="">
         </header>

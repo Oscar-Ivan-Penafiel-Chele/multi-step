@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { ItemMenu } from 'src/app/models';
 import { MenuService } from './service/menu.service';
 
@@ -9,8 +9,9 @@ import { MenuService } from './service/menu.service';
 })
 export class AsideCardComponent implements AfterViewInit{
   protected items_menu: ItemMenu[] = [];
+  protected menuService = inject(MenuService)
 
-  constructor(public _menuService: MenuService){
+  constructor(){
     this.setMenu();
   }
 
@@ -19,10 +20,10 @@ export class AsideCardComponent implements AfterViewInit{
   }
 
   setMenu(): void{
-    this.items_menu = this._menuService.setMenu();
+    this.items_menu = this.menuService.setMenu();
   }
 
   activeItem(): void{
-    this._menuService.activeMenuItem();
+    this.menuService.activeMenuItem();
   }
 }
