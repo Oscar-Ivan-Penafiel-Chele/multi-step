@@ -1,0 +1,6 @@
+<label class="finish__section__card__addOns">
+    <div class="finish__section__card__addOns__item" *ngFor="let addOn of addOns">
+        <p>{{addOn.title}}</p>
+        <span>+{{addOn.price | currency: 'USD' : 'symbol' : '1.0-0'}}{{statusPlan ? '/yr' : '/mo'}}</span>
+    </div>
+</label>

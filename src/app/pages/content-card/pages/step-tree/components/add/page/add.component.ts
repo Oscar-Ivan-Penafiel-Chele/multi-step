@@ -7,7 +7,7 @@ import { AddOn } from 'src/app/models/common/AddOn';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
-export class AddComponent implements OnInit{
+export class AddComponent implements OnInit, AfterViewInit{
   protected addOns: AddOn[] = [];
   protected statusPlan: boolean = false;
   private addOnService = inject(AddOnsService)
@@ -17,10 +17,14 @@ export class AddComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.setAddOns();
+    this.getAddOns();
   } 
 
-  private setAddOns(): void{
+  ngAfterViewInit(): void {
+    this.addOnService.getAddOnsExisting();
+  }
+
+  private getAddOns(): void{
     this.addOns = this.addOnService.getAddons();
   }
 

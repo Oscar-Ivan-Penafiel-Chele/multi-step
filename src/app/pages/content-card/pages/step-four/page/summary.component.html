@@ -1,38 +1,18 @@
-<ng-template [ngIf]="true" [ngIfElse]="complete">
+<ng-template [ngIf]="!isComplete" [ngIfElse]="complete">
     <section>
         <main>
             <h1>Finishing up</h1>
-            <p>Double-check everything looks OK before confirming.</p>
+            <p class="subtitle">Double-check everything looks OK before confirming.</p>
 
             <article class="finish__section">
-                <div class="finish__section__card">
-                    <div class="finish__section__card__plan">
-                        <div>
-                            <p>Arcade (monthly)</p>
-                            <button (click)="goPlan()">Change</button>
-                        </div>
-                        <span>$9/mo</span>
-                    </div>
-                    <div class="divider"></div>
-                    <label class="finish__section__card__addOns">
-                        <div class="finish__section__card__addOns__item">
-                            <p>Online service</p>
-                            <span>+$1/mo</span>
-                        </div>
-                        <div class="finish__section__card__addOns__item">
-                            <p>Online service</p>
-                            <span>+$1/mo</span>
-                        </div>
-                    </label>
-                </div>
-                <div class="finish__section__total">
-                    <p>Total (per mounth)</p>
-                    <span>+$12/mo</span>
-                </div>
+                <finish-card></finish-card>
+                <finish-footer-total></finish-footer-total>
             </article>
         </main>
 
-        <footer-content></footer-content>
+        <footer-content
+            (validateData)="completeInformation()"
+        ></footer-content>
     </section>
 </ng-template>
 

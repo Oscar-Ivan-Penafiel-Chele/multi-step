@@ -1,4 +1,5 @@
 export interface AddOn{
+    id: number,
     name: string,
     title: string,
     detail: string,

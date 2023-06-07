@@ -1,0 +1,9 @@
+<div class="finish__section__card__plan">
+    <div>
+        <p>{{plan.information!.title}} ({{plan.subscription}})</p>
+        <button (click)="goPlan()">Change</button>
+    </div>
+    <span>
+        {{plan.information!.price | currency: 'USD' : 'symbol' : '1.0-0'}}{{statusPlan ? '/yr' : '/mo'}}
+    </span>
+</div>

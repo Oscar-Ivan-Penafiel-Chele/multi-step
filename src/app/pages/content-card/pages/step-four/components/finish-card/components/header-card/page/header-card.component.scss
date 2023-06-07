@@ -1,0 +1,39 @@
+@use '../../../../../../../../../../scss/abstracts' as a;
+
+.finish__section__card__plan{
+    @include a.flex(space-between, center); 
+                    
+    div{
+        width: fit-content;
+
+        p{
+            font-family: ubuntu-medium;
+            color: var(--marine-blue)
+        }
+
+        button{
+            color: var(--cool-gray);
+            background-color: transparent;
+            text-decoration: underline;
+            border: none;
+            transition: color .2s ease-in-out;
+            width: fit-content;
+            margin-top: .4rem;
+
+            &:hover{
+                cursor: pointer;
+                color: var(--purplish-blue);
+            }
+
+            &:focus{
+                outline: 1px solid var(--purplish-blue);
+                border-radius: 2px;
+            }
+        }
+    }
+
+    span{
+        font-family: ubuntu-medium;
+        color: var(--marine-blue)
+    }
+}

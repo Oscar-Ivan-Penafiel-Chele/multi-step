@@ -1,0 +1,18 @@
+@use '../../../../../../../../scss/abstracts' as a;
+
+.finish__section__total{
+    @include a.flex(space-between, center);
+    padding: 1rem;
+
+    p {
+        font-size: .8rem;
+        color: var(--cool-gray);
+        font-family: ubuntu-regular;
+    }
+
+    span{
+        font-size: 1rem;
+        color: var(--purplish-blue);
+        font-family: ubuntu-bold;
+    }
+}

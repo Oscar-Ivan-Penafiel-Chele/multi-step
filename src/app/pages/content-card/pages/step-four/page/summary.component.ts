@@ -1,7 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { MenuService } from 'src/app/pages/aside-card/service/menu.service';
-import { RoutesService } from 'src/app/shared/services/routes/routes.service';
+import { Component, inject} from '@angular/core';
+import { ContentService } from '../../../service/content.service';
 
 @Component({
   selector: 'app-summary',
@@ -9,21 +7,13 @@ import { RoutesService } from 'src/app/shared/services/routes/routes.service';
   styleUrls: ['./summary.component.scss']
 })
 export class SummaryComponent {
-  route: string = 'plan';
- 
-  private menuService = inject(MenuService);
-  private routesService = inject(RoutesService)
+  protected isComplete: boolean = false;
+  private contentService = inject(ContentService);
 
-  constructor(private _router: Router){}
+  constructor(){}
 
-  goPlan(){
-    const index = this.getIndexRoute();
-
-    this.menuService.activeItem(index);
-    this._router.navigate([`/${this.route}`]);
-  }
-
-  getIndexRoute(): number{
-    return this.routesService.getIndexRouteForString(this.route);
+  public completeInformation(){
+    this.isComplete = true;
+    console.log(this.contentService.informationStep());
   }
 }

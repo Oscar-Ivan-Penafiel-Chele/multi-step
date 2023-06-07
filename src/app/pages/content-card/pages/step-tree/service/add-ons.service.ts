@@ -12,23 +12,28 @@ export class AddOnsService {
   private planService = inject(PlanService);
   protected informationStep = this.contentService.informationStep();
 
-  constructor() {}
+  constructor() {
+    this.addOnsSelected = [];
+  }
 
   public setAddOns(): AddOn[]{
     return [
       {
+        id: 1,
         name: 'online',
         title: 'Online service',
         detail: 'Access to multiplayer games',
         price: 1
       },
       {
+        id: 2,
         name: 'larger',
         title: 'Larger storage',
         detail: 'Extra 1 TB of cloud save',
         price: 2
       },
       {
+        id: 3,
         name: 'custom',
         title: 'Customizable Profile',
         detail: 'Custom theme on your profile',
@@ -58,6 +63,30 @@ export class AddOnsService {
     return addOns;
   }
 
+  public getAddOnsExisting(): void{
+    const addOnExisting: AddOn[] = this.informationStep.addOns!;
+
+    if(!addOnExisting) return; 
+
+    this.addOnsSelected = [];
+
+    addOnExisting.forEach((addOn: AddOn) => {
+      const index: number = addOn.id - 1;
+      const addOnMatch: AddOn | undefined  = this.getAddons().find((i) => i.id == addOn.id );
+
+      if(addOnMatch){
+        addOn.price = addOnMatch.price;
+        this.activateAddOn(index, addOn);
+        this.checkAddOnExisting(addOn);
+      }
+    });
+  }
+
+  private checkAddOnExisting(addOn: AddOn): void{
+    const inputCheckBox = document.getElementById(addOn.name) as HTMLInputElement;
+    inputCheckBox.checked = true;
+  }
+
   public getStatus(): boolean{
     if(!this.informationStep.plan) return false;
 
@@ -81,8 +110,13 @@ export class AddOnsService {
   }
 
   public setAddOnsSelected(element: Element, addOn: AddOn): void{
-    this.isSelected(element) ? this.addOnsSelected.push(addOn) : this.deleteItem(addOn);
+    this.isSelected(element) ? this.addItem(addOn) : this.deleteItem(addOn);
     return;
+  }
+
+  private addItem(addOn: AddOn): void{
+    this.addOnsSelected.push(addOn);
+    this.addOnsSelected.sort((a: AddOn,b: AddOn) => a.id - b.id)
   }
 
   private isSelected(element: Element): boolean{
